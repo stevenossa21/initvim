@@ -32,6 +32,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 " Themes
 " Plug 'morhetz/gruvbox'
 "Plug 'franbach/miramare'
@@ -39,8 +41,15 @@ Plug 'dikiaap/minimalist'
 call plug#end()
 " colorscheme gruvbox
 
-" important!!
-"set termguicolors
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
 
 set t_Co=256
 syntax on
