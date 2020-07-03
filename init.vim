@@ -31,9 +31,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 " Themes
 " Plug 'morhetz/gruvbox'
 "Plug 'franbach/miramare'
@@ -55,13 +59,56 @@ set t_Co=256
 syntax on
 colorscheme minimalist
 
+set smarttab
+set cindent
+set tabstop=2
+set shiftwidth=2
+" always uses spaces instead of tab characters
+set expandtab
+
+" vim-prettier
+" Max line length that prettier will wrap on: a number or 'auto' (use
+" textwidth).
+" default: 'auto'
+let g:prettier#config#print_width = 'auto'
+
+" number of spaces per indentation level: a number or 'auto' (use
+" softtabstop)
+" default: 'auto'
+let g:prettier#config#tab_width = 'auto'
+
+" use tabs instead of spaces: true, false, or auto (use the expandtab setting).
+" default: 'auto'
+let g:prettier#config#use_tabs = 'auto'
+
+" flow|babylon|typescript|css|less|scss|json|graphql|markdown or empty string
+" (let prettier choose).
+" default: ''
+let g:prettier#config#parser = ''
+
+" cli-override|file-override|prefer-file
+" default: 'file-override'
+let g:prettier#config#config_precedence = 'file-override'
+
+" always|never|preserve
+" default: 'preserve'
+let g:prettier#config#prose_wrap = 'preserve'
+
+" css|strict|ignore
+" default: 'css'
+let g:prettier#config#html_whitespace_sensitivity = 'css'
+
+" false|true
+" default: 'false'
+let g:prettier#config#require_pragma = 'false'
+
 let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-let mapleader=" "
+let g:prettier#exec_cmd_path = '~/.config/nvim/plugged/vim-prettier/autoload/'
+nmap <Leader>py <Plug>(Prettier)
 nmap <Leader>s <Plug>(easymotion-s2)
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>q :q<CR>
-nmap <Leader>w :s<CR>
+nmap <Leader>w :w<CR>
 let g:user_emmet_leader_key=','
