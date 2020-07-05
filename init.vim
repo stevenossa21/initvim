@@ -34,6 +34,9 @@ set rtp +=~/.config/nvim
 call plug#begin('~/.config/nvim/plugged')
 
 "IDE
+Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdcommenter'     "Comment lines <leader>cc or <leader>c<leader>
+Plug 'tmhedberg/matchit'           "Navigate between brackets with %
 Plug 'Yggdroot/indentLine'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'easymotion/vim-easymotion'
@@ -45,23 +48,30 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 " Themes
-" Plug 'morhetz/gruvbox'
+Plug 'hardcoreplayers/gruvbox9'
+"Plug 'morhetz/gruvbox'
 "Plug 'franbach/miramare'
-Plug 'dikiaap/minimalist'
+"Plug 'dikiaap/minimalist'
 "IndentLine
 let g:indentLine_color_term = 239
 "let g:indentLine_bgcolor_term = 202
 "let g:indentLine_bgcolor_gui = '#FF5F00'
 let g:indentLine_char = '┊'
 "let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-Plug 'posva/vim-vue'  "Vue syntax
+Plug 'posva/vim-vue'                                         "Vue syntax
 
+"appearence
 Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/lightline.vim'
+
 
 call plug#end()
 let g:vue_pre_processors = ['pug', 'scss']
 
  "colorscheme gruvbox
+ set background=dark
+ colorscheme gruvbox9
+ let g:gruvbox_transp_bg = 1
 
 " coc config
 let g:coc_global_extensions = [
@@ -75,7 +85,7 @@ let g:coc_global_extensions = [
 
 set t_Co=256
 syntax on
-colorscheme minimalist
+filetype plugin on
 
 set smarttab
 set cindent
