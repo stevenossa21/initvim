@@ -7,6 +7,7 @@ set showmatch
 set encoding=utf-8
 set sw=2
 set laststatus
+set relativenumber
 
 set nowrap  " No dividir la línea si es muy larga
 
@@ -31,6 +32,7 @@ nnoremap <C-s> :w<CR> " guardar con ctrl s
 
 set rtp +=~/.config/nvim
 call plug#begin('~/.config/nvim/plugged')
+
 "IDE
 Plug 'Yggdroot/indentLine'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -39,8 +41,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -54,9 +54,14 @@ let g:indentLine_color_term = 239
 "let g:indentLine_bgcolor_gui = '#FF5F00'
 let g:indentLine_char = '┊'
 "let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+Plug 'posva/vim-vue'  "Vue syntax
+
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
-" colorscheme gruvbox
+let g:vue_pre_processors = ['pug', 'scss']
+
+ "colorscheme gruvbox
 
 " coc config
 let g:coc_global_extensions = [
