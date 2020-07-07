@@ -3,15 +3,14 @@ set number  " Muestra los números de las líneas
 set ruler
 set clipboard=unnamed
 set showmatch
+set showcmd
 set encoding=utf-8
 set sw=2
 set laststatus
 set relativenumber
-
 if has('mouse')
    set mouse=a
  endif
-
 
 set nowrap  " No dividir la línea si es muy larga
 
@@ -34,8 +33,8 @@ set termguicolors  " Activa true colors en la terminal
 set background=dark  " Fondo del tema: light o dark
 nnoremap <C-s> :w<CR> " guardar con ctrl s
 
-set rtp +=~/.config/nvim
-call plug#begin('~/.config/nvim/plugged')
+set rtp +=~/.vim
+call plug#begin('~/.vim/plugged')
 
 "IDE
 Plug 'jiangmiao/auto-pairs'
@@ -52,7 +51,8 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 " Themes
-Plug 'hardcoreplayers/gruvbox9'
+Plug 'crusoexia/vim-monokai'
+"Plug 'hardcoreplayers/gruvbox9'
 "Plug 'morhetz/gruvbox'
 "Plug 'franbach/miramare'
 "Plug 'dikiaap/minimalist'
@@ -74,7 +74,8 @@ let g:vue_pre_processors = ['pug', 'scss']
 
  "colorscheme gruvbox
  set background=dark
- colorscheme gruvbox9
+ "colorscheme gruvbox9
+ colorscheme monokai
  let g:gruvbox_transp_bg = 1
 
 " coc config
@@ -149,3 +150,52 @@ noremap <Leader>p "*p
 noremap <Leader>y "+y
 noremap <Leader>P "+p
 let g:user_emmet_leader_key=','
+
+" Use a blinking upright bar cursor in Insert mode, a blinking block in normal
+if &term == 'xterm-256color' || &term == 'screen-256color'
+    let &t_SI = "\<Esc>[5 q"
+    let &t_EI = "\<Esc>[1 q"
+endif
+
+if exists('$TMUX')
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+endif
+
+map  <C-m> :tabn<CR> 
+map  <S-m> :tabp<CR>
+map  <C-n> :tabnew<CR>
+
+"coc
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+:imap jc <Esc>
+
+
