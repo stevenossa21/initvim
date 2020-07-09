@@ -1,3 +1,15 @@
+syntax on
+set noerrorbells
+set tabstop=2
+set softtabstop=2
+set smarttab
+set cindent
+set tabstop=4
+set shiftwidth=4
+set expandtab  " Insertar espacios en lugar de <Tab>s
+set smartindent
+set noswapfile
+set incsearch
 set title  " Muestra el tombre del archivo en la ventana de la terminal
 set number  " Muestra los números de las líneas
 set ruler
@@ -6,31 +18,25 @@ set showmatch
 set showcmd
 set encoding=utf-8
 set sw=2
-set laststatus
+"set laststatus
 set relativenumber
 if has('mouse')
    set mouse=a
  endif
 
 set nowrap  " No dividir la línea si es muy larga
-
 set cursorline  " Resalta la línea actual
 set colorcolumn=120  " Muestra la columna límite a 120 caracteres
 
 " Indentación a 2 espacios
-set tabstop=2
 set shiftwidth=2
-set softtabstop=2
 set shiftround
-set expandtab  " Insertar espacios en lugar de <Tab>s
 
 set hidden  " Permitir cambiar de buffers sin tener que guardarlos
-
 set ignorecase  " Ignorar mayúsculas al hacer una búsqueda
 set smartcase  " No ignorar mayúsculas si la palabra a buscar contiene mayúsculas
 set spelllang=en,es  " Corregir palabras usando diccionarios en inglés y español
-set termguicolors  " Activa true colors en la terminal
-set background=dark  " Fondo del tema: light o dark
+set termguicolors  " Activa true colors en la terminal set background=dark  " Fondo del tema: light o dark
 nnoremap <C-s> :w<CR> " guardar con ctrl s
 
 set rtp +=~/.vim
@@ -38,18 +44,16 @@ call plug#begin('~/.vim/plugged')
 
 "IDE
 Plug 'jiangmiao/auto-pairs'
-Plug 'preservim/nerdcommenter'     "Comment lines <leader>cc or <leader>c<leader>
-Plug 'tmhedberg/matchit'           "Navigate between brackets with %
-Plug 'Yggdroot/indentLine'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'easymotion/vim-easymotion'
-Plug 'scrooloose/nerdtree'
-Plug 'mattn/emmet-vim'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'preservim/nerdcommenter'                   "Comment lines <leader>cc or <leader>c<leader>
+Plug 'tmhedberg/matchit'                         "Navigate between brackets with %
+Plug 'Yggdroot/indentLine'                       "Muestra identacion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  "autocompleta
+Plug 'easymotion/vim-easymotion'                 "<leader>s para buscar en pantalla
+Plug 'scrooloose/nerdtree'                       "muestra arbol de archivos
+Plug 'mattn/emmet-vim'                           "autocompleta html ,,
+Plug 'Xuyuanp/nerdtree-git-plugin'               "Muestra estados de git en el arbol
+Plug 'christoomey/vim-tmux-navigator'            "Navegar entre buffers con ctrl h l
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 " Themes
 Plug 'crusoexia/vim-monokai'
 "Plug 'hardcoreplayers/gruvbox9'
@@ -67,7 +71,6 @@ Plug 'posva/vim-vue'                                         "Vue syntax
 "appearence
 Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
-
 
 call plug#end()
 let g:vue_pre_processors = ['pug', 'scss']
@@ -89,15 +92,7 @@ let g:coc_global_extensions = [
   \ ]
 
 set t_Co=256
-syntax on
 filetype plugin on
-
-set smarttab
-set cindent
-set tabstop=2
-set shiftwidth=2
-" always uses spaces instead of tab characters
-set expandtab
 
 " vim-prettier
 " Max line length that prettier will wrap on: a number or 'auto' (use
@@ -197,5 +192,4 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 :imap jc <Esc>
-
 
